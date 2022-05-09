@@ -58,3 +58,5 @@ export class FinishBlock extends GameObject {
         this.element.style.top = this.position.y + "px";
     }
 }
+
+

@@ -97,3 +97,8 @@ button {
 .disabled {
     display: none;
 }
+
+.mob {
+    position: absolute;
+    
+}
