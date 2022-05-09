@@ -10,5 +10,22 @@ var x = setInterval(function() {
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("timer").innerHTML = "No time left!";
+    finishGame();
   }
 }, 1000);
+
+function finishGame() {
+  let menu = document.getElementById('menu');
+  menu.classList.remove('disabled');
+  let container = document.getElementById('container')
+  container.style.backgroundColor = 'black'
+  container.style.opacity = '50%'
+  let restartButton = document.querySelector('.restart-button')
+  restartButton.classList.remove('disabled')
+  document.addEventListener('keydown', (event) => {
+      switch (event.key) {
+          case ' ':
+              location.reload()
+          }
+  })
+}
