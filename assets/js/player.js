@@ -18,8 +18,8 @@ export default class Player {
             y: 0,
         }
         this.position = {
-            x: 42,
-            y: 42
+            x: 40,
+            y: 40
         }
     }
     update() {
@@ -35,7 +35,7 @@ export default class Player {
         block_hit_list.forEach(block => {
 
             if (this.speed.x > 0) {
-                let x_new_position = block.position.x - block.width 
+                let x_new_position = block.position.x - block.width
                 let delta = x_new_position - this.position.x
                 if (Math.abs(delta) < 10) {
                     this.position.x = x_new_position
@@ -43,7 +43,7 @@ export default class Player {
                 }
             }
             if (this.speed.x < 0) {
-                let x_new_position = block.position.x + block.width 
+                let x_new_position = block.position.x + block.width
                 let delta = x_new_position - this.position.x
                 if (Math.abs(delta) < 10) {
                     this.position.x = x_new_position
