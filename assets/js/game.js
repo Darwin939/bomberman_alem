@@ -33,7 +33,7 @@ export default class Game {
   }
   update() {
     if (this.state === "running") {
-      document.getElementById("score").innerHTML = this.score;
+      document.getElementById("score").innerHTML = "Score: " + this.score;
       this.walls.forEach((wall) => wall.update());
       this.player.update();
       this.bombs.forEach((bomb, idx) => {
