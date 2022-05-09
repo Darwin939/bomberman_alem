@@ -1,7 +1,7 @@
 'use strict';
 
 import Bomb from "./bomb.js";
-import { detectPlayerCollision } from "./detectCollision.js";
+import { detectPlayerCollision } from "./detectcollision.js";
 
 
 export default class Player {
