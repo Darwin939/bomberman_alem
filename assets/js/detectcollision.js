@@ -24,7 +24,9 @@ export function detectPlayerCollision(game, gameObject) {
     };
 }
 
+
 export function detectCollision(position, gameObject){
+
     let bottomOfObject = gameObject.position.y + gameObject.height
     let TopOfObject = gameObject.position.y
     let rightSideOfObject = gameObject.position.x + gameObject.width

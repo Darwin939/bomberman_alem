@@ -1,9 +1,9 @@
 "use strict";
 
 import Player from "./player.js";
-import InputHandler from "./inputhandler.js";
+import {InputHandlerPlayer1, InputHandlerPlayer2} from "./inputhandler.js";
 import { buildLevel, level1 } from "./level.js";
-import { finishGame, pauseGame } from './menu.js'
+import { finishGame, pauseGame } from "./menu.js";
 
 const STATES = {
   1: "running",
@@ -26,16 +26,20 @@ export default class Game {
   }
 
   start() {
-    this.player = new Player(this);
+    this.player1 = new Player(this, {x: 42, y: 42}, 'player1');
+    this.player2 = new Player(this, {x: 222, y: 222}, 'player2')
     this.walls = buildLevel(this, level1);
     this.level = 1;
-    new InputHandler(this.player, this);
+    new InputHandlerPlayer1(this.player1, this);
+    new InputHandlerPlayer2(this.player2, this);
   }
+
   update() {
     if (this.state === "running") {
       document.getElementById("score").innerHTML = "Score: " + this.score;
       this.walls.forEach((wall) => wall.update());
-      this.player.update();
+      this.player1.update();
+      this.player2.update();
       this.bombs.forEach((bomb, idx) => {
         if (bomb.isTimeToDestroy()) {
           bomb.explode();
@@ -51,16 +55,17 @@ export default class Game {
         }
       });
       this.finishBlocks.forEach((block) => block.update());
-    } else if (this.state === 'endGame'){
-      finishGame()
-    } else if (this.state === 'paused'){
-      pauseGame()
+    } else if (this.state === "endGame") {
+      finishGame();
+    } else if (this.state === "paused") {
+      pauseGame();
     }
   }
   draw() {
     this.walls.forEach((wall) => wall.draw());
     this.bombs.forEach((bomb) => bomb.draw());
-    this.player.draw();
+    this.player1.draw();
+    this.player2.draw();
     this.explosions.forEach((explosion) => explosion.draw());
     this.finishBlocks.forEach((finish) => finish.draw());
   }

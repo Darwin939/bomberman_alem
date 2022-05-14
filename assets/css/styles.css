@@ -22,7 +22,7 @@ body{
 
 }
 
-#player{
+.player{
     z-index: 1;
     position: absolute;
 }

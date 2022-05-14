@@ -13,6 +13,8 @@ export let game = new Game
 
 game.start()
 
+
+
 function gameLoop(){
     game.update()
     game.draw()

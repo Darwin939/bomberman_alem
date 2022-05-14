@@ -1,9 +1,6 @@
+'use strict';
+
+import { level1 } from './level.js';
+import {getCurrentArrayPosition, getNextPath} from './pathfinder.js';
 
 
-
-export default class Mob {
-    constructor(){
-        this.level = 1;
-
-    }
-}
