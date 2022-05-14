@@ -1,6 +1,7 @@
 'use strict';
 
 import Bomb from "./bomb.js";
+
 import { detectCollision } from "./detectCollision.js";
 
 
@@ -32,36 +33,38 @@ export default class Player {
         block_hit_list.forEach(block => {
 
             if (this.speed.x > 0) {
-                let x_new_position = block.position.x - block.width -5
+                let x_new_position = block.position.x - block.width - this.game.player.maxSpeed
                 let delta = x_new_position - this.position.x
                 if (Math.abs(delta) < 10) {
                     this.position.x = x_new_position
 
                 }
-
             }
             if (this.speed.x < 0) {
-                let x_new_position = block.position.x + block.width +5
+                let x_new_position = block.position.x + block.width + this.game.player.maxSpeed
                 let delta = x_new_position - this.position.x
                 if (Math.abs(delta) < 10) {
                     this.position.x = x_new_position
 
                 }
+                
             }
             if (this.speed.y < 0) {
-                let y_new_position = block.position.y + block.width + 5
+                let y_new_position = block.position.y + block.width + this.game.player.maxSpeed
                 let delta = y_new_position - this.position.y
                 if (Math.abs(delta) < 10) {
                     this.position.y = y_new_position
                 }
+
             }
 
             if (this.speed.y > 0) {
-                let y_new_position = block.position.y - block.width - 5
+                let y_new_position = block.position.y - block.width - this.game.player.maxSpeed
                 let delta = y_new_position - this.position.y
                 if (Math.abs(delta) < 10) {
                     this.position.y = y_new_position
                 }
+
             }
         })
 

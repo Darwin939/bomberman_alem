@@ -12,11 +12,13 @@
     <script type="module" src="./assets/js/detectcollision.js"></script>
     <script type="module" src="./assets/js/bomb.js"></script>
     <script type="module" src="./assets/js/menu.js"></script>
+    <script type="module" src="./assets/js/timer.js"></script>
+
 </head>
 <body>
     <div class="menu-container disabled" id = "menu">
         <div class="menu-info">
-            You are won
+            Game over
         </div>
         <div class="menu-actions">
             <div class="restart-button disabled">
@@ -32,6 +34,7 @@
             </div>
         </div>
     </div>
+
     <div class="container" id="container">
 
         <div id="canvas">
@@ -40,5 +43,7 @@
         </div>
     </div>
 
+    <p id="score"></p>
+    <p id="timer"></p>
 </body>
 </html>

@@ -24,6 +24,12 @@ export function finishGame() {
     container.style.opacity = '50%'
     let restartButton = document.querySelector('.restart-button')
     restartButton.classList.remove('disabled')
+    document.addEventListener('keydown', (event) => {
+        switch (event.key) {
+            case ' ':
+                location.reload()
+            }
+    })
 }
 
 export function pauseGame() {
