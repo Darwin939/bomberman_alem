@@ -1,7 +1,7 @@
 "use strict";
 
 import Player from "./player.js";
-import InputHandler from "./inputhandler.js";
+import {InputHandlerPlayer1, InputHandlerPlayer2} from "./inputhandler.js";
 import { buildLevel, level1 } from "./level.js";
 import { finishGame, pauseGame } from "./menu.js";
 
@@ -20,23 +20,24 @@ export default class Game {
     this.bombs = [];
     this.explosions = [];
     this.finishBlocks = [];
-    this.mobs = [];
     this.currentLevel = 1;
     this.state = STATES[1]; // running
   }
 
   start() {
-    this.player = new Player(this);
+    this.player1 = new Player(this, {x: 42, y: 42}, 'player1');
+    this.player2 = new Player(this, {x: 222, y: 222}, 'player2')
     this.walls = buildLevel(this, level1);
     this.level = 1;
-    new InputHandler(this.player, this);
+    new InputHandlerPlayer1(this.player1, this);
+    new InputHandlerPlayer2(this.player2, this);
   }
 
   update() {
     if (this.state === "running") {
       this.walls.forEach((wall) => wall.update());
-      this.player.update();
-      this.mobs.forEach((mob) => mob.update());
+      this.player1.update();
+      this.player2.update();
       this.bombs.forEach((bomb, idx) => {
         if (bomb.isTimeToDestroy()) {
           bomb.explode();
@@ -61,9 +62,9 @@ export default class Game {
   draw() {
     this.walls.forEach((wall) => wall.draw());
     this.bombs.forEach((bomb) => bomb.draw());
-    this.player.draw();
+    this.player1.draw();
+    this.player2.draw();
     this.explosions.forEach((explosion) => explosion.draw());
     this.finishBlocks.forEach((finish) => finish.draw());
-    this.mobs.forEach((mob) => mob.draw());
   }
 }

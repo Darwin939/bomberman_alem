@@ -1,6 +1,5 @@
 'use strict';
 
-import Mob from './mob.js';
 import Game from '/assets/js/game.js'
 import {restartGame, continueGame} from '/assets/js/menu.js'
 
@@ -14,7 +13,7 @@ export let game = new Game
 
 game.start()
 
-game.mobs.push(new Mob(game))
+
 
 function gameLoop(){
     game.update()

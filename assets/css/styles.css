@@ -22,7 +22,7 @@ body{
 
 }
 
-#player{
+.player{
     z-index: 1;
     position: absolute;
 }
@@ -96,9 +96,4 @@ button {
 
 .disabled {
     display: none;
-}
-
-.mob {
-    position: absolute;
-    
 }

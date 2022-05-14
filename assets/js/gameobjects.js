@@ -39,8 +39,9 @@ export class FinishBlock extends GameObject {
     }
 
     update() {
-        let player = this.game.player
-        if (detectCollision(this.position, player)) {
+        let player1 = this.game.player1
+
+        if (detectCollision(this.position, player1)) {
             this.game.level ++
             // clear dom
             // this.game.walls.forEach((wall)=> wall.element.remove())
@@ -58,5 +59,3 @@ export class FinishBlock extends GameObject {
         this.element.style.top = this.position.y + "px";
     }
 }
-
-

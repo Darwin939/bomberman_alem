@@ -1,12 +1,12 @@
 'use strict';
 
 import Bomb from "./bomb.js";
-import { detectPlayerCollision } from "./detectCollision.js";
+import { detectCollision } from "./detectCollision.js";
 
 
 export default class Player {
-    constructor(game) {
-        this.element = document.getElementById('player')
+    constructor(game, position, playerId) {
+        this.element = document.getElementById(playerId)
         this.height = 40
         this.width = 40
         this.gameHeight = game.gameHeight
@@ -17,17 +17,14 @@ export default class Player {
             x: 0,
             y: 0,
         }
-        this.position = {
-            x: 42,
-            y: 42
-        }
+        this.position = position
     }
     update() {
         let walls = this.game.walls
         let block_hit_list = [];
 
         walls.forEach(wall => {
-            if (detectPlayerCollision(this.game, wall)) {
+            if (detectCollision(this.position, wall)) {
                 block_hit_list.push(wall)
             }
         });
