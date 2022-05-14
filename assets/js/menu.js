@@ -17,6 +17,7 @@ export function continueGame() {
 }
 
 export function finishGame() {
+    game.state = 'endGame'
     let menu = document.getElementById('menu');
     menu.classList.remove('disabled');
     let container = document.getElementById('container')

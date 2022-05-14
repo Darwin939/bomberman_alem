@@ -2,8 +2,9 @@
 
 import Player from "./player.js";
 import {InputHandlerPlayer1, InputHandlerPlayer2} from "./inputhandler.js";
-import { buildLevel, level1 } from "./level.js";
+import { buildLevel, level1, PlaceTransferX, PlaceTransferY } from "./level.js";
 import { finishGame, pauseGame } from "./menu.js";
+
 
 const STATES = {
   1: "running",
@@ -26,8 +27,8 @@ export default class Game {
   }
 
   start() {
-    this.player1 = new Player(this, {x: 42, y: 42}, 'player1');
-    this.player2 = new Player(this, {x: 222, y: 222}, 'player2')
+    this.player1 = new Player(this, {x: 42 + PlaceTransferX, y: 42 + PlaceTransferY }, 'player1');
+    this.player2 = new Player(this, {x: 222 + PlaceTransferX, y: 222 + PlaceTransferY }, 'player2')
     this.walls = buildLevel(this, level1);
     this.level = 1;
     new InputHandlerPlayer1(this.player1, this);

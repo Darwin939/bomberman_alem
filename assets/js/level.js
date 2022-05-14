@@ -3,26 +3,29 @@
 import {BrickWall, Wall} from "./wall.js";
 import {FinishBlock} from "./gameobjects.js"
 
+export const PlaceTransferX = 600
+export const PlaceTransferY = 100
+
 export function buildLevel(game, level) {
     let walls = [];
     level.forEach((row, rowIdx) => {
         row.forEach((wall, wallIdx) => {
             if (wall === 1) {
                 let position = {
-                    x: 40 * wallIdx,
-                    y:  40 * rowIdx
+                    x: 40 * wallIdx + PlaceTransferX,
+                    y:  40 * rowIdx + PlaceTransferY
                 };
                 walls.push(new Wall(game, position));
             } else if (wall === 2) {
                 let position = {
-                    x: 40 * wallIdx,
-                    y: 40 * rowIdx
+                    x: 40 * wallIdx + PlaceTransferX,
+                    y: 40 * rowIdx + PlaceTransferY
                 };
                 walls.push(new BrickWall(game, position));
             } else if (wall === 3) {
                 let position = {
-                    x: 40 * wallIdx,
-                    y: 40 * rowIdx
+                    x: 40 * wallIdx + PlaceTransferX,
+                    y: 40 * rowIdx + PlaceTransferY
                 };
                 // TODO add all game objects to one array
                 // console.log(game)
