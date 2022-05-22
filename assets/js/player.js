@@ -14,6 +14,7 @@ export default class Player {
         this.gameWidth = game.gameWidth
         this.maxSpeed = 3
         this.game = game
+        this.lastBombPutTime = Date.now()
         this.speed = {
             x: 0,
             y: 0,
@@ -94,8 +95,13 @@ export default class Player {
 
     putBomb() {
         console.log('put bomb')
+        let delta = (Date.now() - this.lastBombPutTime) / 1000
+        if (delta < 1){
+            return
+        }
         let bomb = new Bomb(this.game, this.position)
         this.game.bombs.push(bomb)
+        this.lastBombPutTime = Date.now()
     }
 
     moveStop() {

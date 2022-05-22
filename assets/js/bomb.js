@@ -53,12 +53,12 @@ export default class Bomb {
 
     if (detectCollision(position, this.game.player1)){
 
-        finishGame()
-        console.log("player2 was win")
+        finishGame(this.game.player2)
+        console.log("player2 has won")
     }
     if (detectCollision(position, this.game.player2)){
-        finishGame()
-        console.log("player1 was win")
+        finishGame(this.game.player1)
+        console.log("player1 has won")
     }
 
   }

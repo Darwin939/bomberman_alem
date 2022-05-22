@@ -16,14 +16,17 @@ export function continueGame() {
     menu.classList.toggle('disabled');
 }
 
-export function finishGame() {
+export function finishGame(player) {
     game.state = 'endGame'
     let menu = document.getElementById('menu');
     menu.classList.remove('disabled');
-    let container = document.getElementById('container')
+    let container = document.getElementById('canvas')
     container.style.backgroundColor = 'black'
     container.style.opacity = '50%'
     let restartButton = document.querySelector('.restart-button')
+    if (player){
+        document.querySelector('.menu-info').textContent = player.element.id + " has won"
+    }
     restartButton.classList.remove('disabled')
     document.addEventListener('keydown', (event) => {
         switch (event.key) {
@@ -36,7 +39,7 @@ export function finishGame() {
 export function pauseGame() {
     let menu = document.getElementById('menu');
     menu.classList.remove('disabled');
-    let container = document.getElementById('container')
+    let container = document.getElementById('canvas')
     container.style.backgroundColor = 'black'
     container.style.opacity = '50%'
     let restartButton = document.querySelector('.restart-button')

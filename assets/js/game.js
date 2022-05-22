@@ -27,7 +27,7 @@ export default class Game {
 
   start() {
     this.player1 = new Player(this, {x: 42 + PlaceTransferX, y: 42 + PlaceTransferY }, 'player1');
-    this.player2 = new Player(this, {x: 222 + PlaceTransferX, y: 222 + PlaceTransferY }, 'player2')
+    this.player2 = new Player(this, {x: 520 + PlaceTransferX, y: 520 + PlaceTransferY }, 'player2')
     this.walls = buildLevel(this, level1);
     this.level = 1;
     new InputHandlerPlayer1(this.player1, this);
