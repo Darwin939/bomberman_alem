@@ -48,7 +48,6 @@ export default class Bomb {
       if (wall.isDestructible && detectCollision(position, wall)) {
         wall.element.remove();
         this.game.walls.splice(idx, 1);
-        this.game.score += 10;
       }
     });
 

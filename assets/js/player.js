@@ -2,7 +2,7 @@
 
 import Bomb from "./bomb.js";
 
-import { detectCollision } from "./detectCollision.js";
+import { detectCollision } from "./detectcollision.js";
 
 
 export default class Player {

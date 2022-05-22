@@ -23,7 +23,6 @@ export default class Game {
     this.finishBlocks = [];
     this.currentLevel = 1;
     this.state = STATES[1]; // running
-    this.score = 0;
   }
 
   start() {
@@ -37,7 +36,6 @@ export default class Game {
 
   update() {
     if (this.state === "running") {
-      document.getElementById("score").innerHTML = "Score: " + this.score;
       this.walls.forEach((wall) => wall.update());
       this.player1.update();
       this.player2.update();
