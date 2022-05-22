@@ -3,8 +3,8 @@
 import {BrickWall, Wall} from "./wall.js";
 import {FinishBlock} from "./gameobjects.js"
 
-export const PlaceTransferX = 600
-export const PlaceTransferY = 100
+export const PlaceTransferX = 0
+export const PlaceTransferY = 0
 
 export function buildLevel(game, level) {
     let walls = [];
