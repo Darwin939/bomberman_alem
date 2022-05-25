@@ -13,23 +13,23 @@ export let game = new Game
 
 game.start()
 
-var updateId,
-    previousDelta = 0,
-    fpsLimit = 60;
+// var updateId,
+//     previousDelta = 0,
+//     fpsLimit = 60;
 
 
 function gameLoop(){
     game.update()
     game.draw()
 
-    updateId = requestAnimationFrame(gameLoop);
+    requestAnimationFrame(gameLoop);
 
-    var delta = currentDelta - previousDelta;
+    // var delta = currentDelta - previousDelta;
 
-    if (fpsLimit && delta < 1000 / fpsLimit) {
-        return;
-    }
-    previousDelta = currentDelta;
+    // if (fpsLimit && delta < 1000 / fpsLimit) {
+    //     return;
+    // }
+    // previousDelta = currentDelta;
 
 }
 

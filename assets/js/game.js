@@ -67,5 +67,24 @@ export default class Game {
     this.player2.draw();
     this.explosions.forEach((explosion) => explosion.draw());
     this.finishBlocks.forEach((finish) => finish.draw());
+    drawScore(this)
+    drawLife(this)
   }
+}
+
+
+function drawScore(game) {
+    let player1ScoreElement = document.getElementById('player1-score');
+    let player2ScoreElement = document.getElementById('player2-score');
+
+    player1ScoreElement.innerHTML = game.player1.score
+    player2ScoreElement.innerHTML = game.player2.score
+}
+
+function drawLife(game) {
+    let player1LifeElement = document.getElementById('player1-life');
+    let player2LifeElement = document.getElementById('player2-life');
+
+    player1LifeElement.innerHTML = game.player1.lifes
+    player2LifeElement.innerHTML = game.player2.lifes
 }

@@ -14,7 +14,11 @@ export default class Player {
         this.gameWidth = game.gameWidth
         this.maxSpeed = 3
         this.game = game
+        this.lifes = 3
+        this.score = 0
         this.lastBombPutTime = Date.now()
+        this.immunity = true
+        this.lastImmunityGainedTime = Date.now()
         this.speed = {
             x: 0,
             y: 0,
@@ -68,6 +72,12 @@ export default class Player {
 
             }
         })
+
+        let delta = (Date.now() - this.lastImmunityGainedTime) / 1000
+        if (delta > 3){
+            this.immunity = false
+        }
+
 
         this.position.x += this.speed.x
         this.position.y += this.speed.y
