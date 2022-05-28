@@ -13,48 +13,23 @@ export let game = new Game
 
 game.start()
 
-var stop = false;
-var frameCount = 0;
-var fps, fpsInterval, startTime, now, then, elapsed;
-
-function startAnimating(fps) {
-    fpsInterval = 1000 / fps;
-    then = Date.now();
-    startTime = then;
-    gameLoop();
-}
+var fps = 60;
+var now;
+var then = Date.now();
+var interval = 1000/fps;
+var delta;
 
 function gameLoop(){
-    if (stop) {
-        return;
-    }
-
-
     requestAnimationFrame(gameLoop);
-
-
     now = Date.now();
-    elapsed = now - then;
-    // window.requestAnimationFrame(gameLoop);
+    delta = now - then;
+     
+    if (delta > interval) {
+        then = now - (delta % interval);
 
-    if (elapsed > fpsInterval) {
-
-        // Get ready for next frame by setting then=now, but also adjust for your
-        // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
-        then = now - (elapsed % fpsInterval);
-
-        // Put your drawing code here
-
-
-    
-    game.update()
-    game.draw()
-    var sinceStart = now - startTime;
-    var currentFps = Math.round(1000 / (sinceStart / ++frameCount) * 100) / 100;
-
-
+        game.update()
+        game.draw()
     }
 }
-
-startAnimating(60);
+gameLoop()
 

@@ -14,7 +14,7 @@ export default class Bomb {
     this.gameWidth = game.gameWidth;
     this.createdDate = Date.now();
     this.MaxLifetime = 3000;
-    this.explosionRadius = 2;
+    this.explosionRadius = 1;
     this.position = {
       x: position.x,
       y: position.y,
@@ -41,14 +41,16 @@ export default class Bomb {
   }
 
   removeFromDom() {
-    this.element.remove();
+    // this.element.remove();
+    this.element.style.opacity = 0;
   }
 
   damage(position) {
     this.game.walls.forEach((wall, idx) => {
       if (wall.isDestructible && detectCollision(position, wall)) {
           console.log("remove")
-        wall.element.remove();
+        // wall.element.remove();
+        wall.element.style.opacity = 0
         this.game.walls.splice(idx, 1);
       }
     });
@@ -100,35 +102,64 @@ export default class Bomb {
   explode() {
     // TODO refactor this
     this.damage(this.position);
-    new Explosion(this.game, this.position);
+    // new Explosion(this.game, this.position);
+
     for (let i = 1; i <= this.explosionRadius; i++) {
       let new_position = new Object();
       new_position.y = this.position.y + 40 * i;
       new_position.x = this.position.x;
       this.damage(new_position);
       new Explosion(this.game, new_position);
-    }
-    for (let i = 1; i <= this.explosionRadius; i++) {
-      let new_position = new Object();
+
+      new_position = new Object();
       new_position.y = this.position.y - 40 * i;
       new_position.x = this.position.x;
       this.damage(new_position);
       new Explosion(this.game, new_position);
-    }
-    for (let i = 1; i <= this.explosionRadius; i++) {
-      let new_position = new Object();
+
+       new_position = new Object();
       new_position.y = this.position.y;
       new_position.x = this.position.x - 40 * i;
       this.damage(new_position);
       new Explosion(this.game, new_position);
-    }
-    for (let i = 1; i <= this.explosionRadius; i++) {
-      let new_position = new Object();
+
+      new_position = new Object();
       new_position.y = this.position.y;
       new_position.x = this.position.x + 40 * i;
       this.damage(new_position);
       new Explosion(this.game, new_position);
+
     }
+
+
+    // for (let i = 1; i <= this.explosionRadius; i++) {
+    //   let new_position = new Object();
+    //   new_position.y = this.position.y + 40 * i;
+    //   new_position.x = this.position.x;
+    //   this.damage(new_position);
+    //   // new Explosion(this.game, new_position);
+    // }
+    // for (let i = 1; i <= this.explosionRadius; i++) {
+    //   let new_position = new Object();
+    //   new_position.y = this.position.y - 40 * i;
+    //   new_position.x = this.position.x;
+    //   this.damage(new_position);
+    //   // new Explosion(this.game, new_position);
+    // }
+    // for (let i = 1; i <= this.explosionRadius; i++) {
+    //   let new_position = new Object();
+    //   new_position.y = this.position.y;
+    //   new_position.x = this.position.x - 40 * i;
+    //   this.damage(new_position);
+    //   // new Explosion(this.game, new_position);
+    // }
+    // for (let i = 1; i <= this.explosionRadius; i++) {
+    //   let new_position = new Object();
+    //   new_position.y = this.position.y;
+    //   new_position.x = this.position.x + 40 * i;
+    //   this.damage(new_position);
+    //   // new Explosion(this.game, new_position);
+    // }
     // call animation
     // damage player and other creatures
   }
