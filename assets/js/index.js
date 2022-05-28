@@ -1,4 +1,4 @@
-'use strict';
+
 
 import Game from '/assets/js/game.js'
 import {restartGame, continueGame} from '/assets/js/menu.js'
@@ -13,24 +13,48 @@ export let game = new Game
 
 game.start()
 
-// var updateId,
-//     previousDelta = 0,
-//     fpsLimit = 60;
+var stop = false;
+var frameCount = 0;
+var fps, fpsInterval, startTime, now, then, elapsed;
 
+function startAnimating(fps) {
+    fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    gameLoop();
+}
 
 function gameLoop(){
-    game.update()
-    game.draw()
+    if (stop) {
+        return;
+    }
+
 
     requestAnimationFrame(gameLoop);
 
-    // var delta = currentDelta - previousDelta;
 
-    // if (fpsLimit && delta < 1000 / fpsLimit) {
-    //     return;
-    // }
-    // previousDelta = currentDelta;
+    now = Date.now();
+    elapsed = now - then;
+    // window.requestAnimationFrame(gameLoop);
 
+    if (elapsed > fpsInterval) {
+
+        // Get ready for next frame by setting then=now, but also adjust for your
+        // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+        then = now - (elapsed % fpsInterval);
+
+        // Put your drawing code here
+
+
+    
+    game.update()
+    game.draw()
+    var sinceStart = now - startTime;
+    var currentFps = Math.round(1000 / (sinceStart / ++frameCount) * 100) / 100;
+
+
+    }
 }
 
-gameLoop()
+startAnimating(60);
+
