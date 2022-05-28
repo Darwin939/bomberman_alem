@@ -45,15 +45,18 @@ export default class Bomb {
     this.element.style.opacity = 0;
   }
 
-  damage(position) {
-    this.game.walls.forEach((wall, idx) => {
-      if (wall.isDestructible && detectCollision(position, wall)) {
-          console.log("remove")
-        // wall.element.remove();
-        wall.element.style.opacity = 0
-        this.game.walls.splice(idx, 1);
-      }
-    });
+  damage(position, walls) {
+    if (walls){
+      walls.forEach((wall, idx) => {
+        if (wall.isDestructible && detectCollision(position, wall)) {
+            console.log("remove")
+          // wall.element.remove();
+          wall.element.style.opacity = 0
+          // this.game.walls.splice(idx, 1);
+        }
+      });
+    }
+
 
 
     if (detectCollision(position, this.game.player1) && !this.game.player1.immunity){
@@ -66,7 +69,8 @@ export default class Bomb {
         } else {
             this.game.player1.position = {x: 42, y: 42}
             this.game.player2.position = {x: 520, y: 520}
-            this.game.walls.forEach( (wall) => (wall.element.remove()))
+            // this.game.walls.forEach( (wall) => (wall.element.remove()))
+            this.game.walls.forEach( (wall) => (wall.element.style.opacity = 0))
             this.game.walls = buildLevel(this.game, level1);
             this.game.player2.immunity = true
             this.game.player1.immunity = true
@@ -86,7 +90,9 @@ export default class Bomb {
         } else {
             this.game.player1.position = {x: 42, y: 42}
             this.game.player2.position = {x: 520, y: 520}
-            this.game.walls.forEach( (wall) => (wall.element.remove()))
+            // this.game.walls.forEach( (wall) => (wall.element.remove()))
+            this.game.walls.forEach( (wall) => (wall.element.style.opacity = 0))
+
             this.game.walls = buildLevel(this, level1);
 
             this.game.player2.immunity = true
@@ -103,30 +109,41 @@ export default class Bomb {
     // TODO refactor this
     this.damage(this.position);
     // new Explosion(this.game, this.position);
+    let newWalls = [];
+
+    this.game.walls.forEach((wall, idx) => {
+      let diffX = Math.abs(wall.position.x - this.position.x)
+      let diffY = Math.abs(wall.position.y - this.position.y)
+      if (diffX <= 100){
+        newWalls.push(wall)
+      } else if (diffY <= 100){
+        newWalls.push(wall) 
+      }
+    });
 
     for (let i = 1; i <= this.explosionRadius; i++) {
       let new_position = new Object();
       new_position.y = this.position.y + 40 * i;
       new_position.x = this.position.x;
-      this.damage(new_position);
+      this.damage(new_position, newWalls);
       new Explosion(this.game, new_position);
 
       new_position = new Object();
       new_position.y = this.position.y - 40 * i;
       new_position.x = this.position.x;
-      this.damage(new_position);
+      this.damage(new_position, newWalls);
       new Explosion(this.game, new_position);
 
        new_position = new Object();
       new_position.y = this.position.y;
       new_position.x = this.position.x - 40 * i;
-      this.damage(new_position);
+      this.damage(new_position, newWalls);
       new Explosion(this.game, new_position);
 
       new_position = new Object();
       new_position.y = this.position.y;
       new_position.x = this.position.x + 40 * i;
-      this.damage(new_position);
+      this.damage(new_position, newWalls);
       new Explosion(this.game, new_position);
 
     }
