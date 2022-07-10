@@ -3,7 +3,7 @@
 import Bomb from "./bomb.js";
 
 import { detectCollision } from "./detectcollision.js";
-
+import { finishGame } from "./menu.js";
 
 export default class Player {
     constructor(game, position, playerId) {
@@ -26,6 +26,11 @@ export default class Player {
         this.position = position
     }
     update() {
+
+        if (this.lifes === 0){
+            finishGame()
+        }
+
         let walls = this.game.walls
         let block_hit_list = [];
 

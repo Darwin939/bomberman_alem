@@ -47,51 +47,30 @@ export default class Bomb {
 
   damage(position) {
 
+    this.game.mobs.forEach(
+        (mob, idx) => {
+            if (detectCollision(position, mob)){
+                this.game.player1.score += 1
+                mob.element.style.opacity = 0;
+                this.game.mobs.splice(idx, 1);
+            }
+        }
+    )
 
 
     if (detectCollision(position, this.game.player1) && !this.game.player1.immunity){
         this.game.player1.lifes --
-        this.game.player2.score ++
-            // finishGame(this.game.player2)
 
-        if (this.game.player2.score === 3) {
-            finishGame(this.game.player2)
-        } else {
-            this.game.player1.position = {x: 42, y: 42}
-            this.game.player2.position = {x: 520, y: 520}
-            // this.game.walls.forEach( (wall) => (wall.element.remove()))
-            this.game.walls.forEach( (wall) => (wall.element.style.opacity = 0))
-            this.game.walls = buildLevel(this.game, level1);
-            this.game.player2.immunity = true
-            this.game.player1.immunity = true
-            this.game.player2.lastImmunityGainedTime = Date.now()
-            this.game.player1.lastImmunityGainedTime = Date.now()
-        }
+        this.game.player1.position = {x: 42, y: 42}
+        this.game.walls.forEach( (wall) => (wall.element.style.opacity = 0))
+        this.game.deleteAllMobs();
+        this.game.walls = buildLevel(this.game, level1);
+
+        this.game.player1.immunity = true
+        this.game.player1.lastImmunityGainedTime = Date.now()
     }
 
-    if (detectCollision(position, this.game.player2) && !this.game.player2.immunity){
-        this.game.player2.lifes --
-        this.game.player1.score ++
 
-                    // finishGame(this.game.player1)
-
-        if (this.game.player1.score === 3) {
-            finishGame(this.game.player1)
-        } else {
-            this.game.player1.position = {x: 42, y: 42}
-            this.game.player2.position = {x: 520, y: 520}
-            // this.game.walls.forEach( (wall) => (wall.element.remove()))
-            this.game.walls.forEach( (wall) => (wall.element.style.opacity = 0))
-
-            this.game.walls = buildLevel(this, level1);
-
-            this.game.player2.immunity = true
-            this.game.player1.immunity = true
-            this.game.player2.lastImmunityGainedTime = Date.now()
-            this.game.player1.lastImmunityGainedTime = Date.now()
-        }
-        console.log("player1 has won")
-    }
 
   }
 

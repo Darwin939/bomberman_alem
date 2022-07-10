@@ -1,7 +1,10 @@
 'use strict';
 
 import { detectCollision } from "./detectcollision.js";
-import { buildLevel, level2 } from "./level.js";
+
+import { wonGame } from "./menu.js";
+
+
 
 export class GameObject {
     constructor(game, position) {
@@ -46,6 +49,7 @@ export class FinishBlock extends GameObject {
             // clear dom
             // this.game.walls.forEach((wall)=> wall.element.remove())
             this.game.state = 'endGame';
+            wonGame()
 
             // this.walls = buildLevel(this, level2)
 

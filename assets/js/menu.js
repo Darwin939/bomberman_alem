@@ -50,3 +50,16 @@ export function pauseGame() {
     continueButton.classList.remove('disabled')
     document.querySelector('.menu-info').textContent = "Game paused"
 }
+
+
+export function wonGame() {
+    let menu = document.getElementById('menu');
+    menu.classList.remove('disabled');
+    let container = document.getElementById('canvas')
+    container.style.backgroundColor = 'black'
+    container.style.opacity = '50%'
+    let restartButton = document.querySelector('.restart-button')
+    restartButton.classList.remove('disabled')
+
+    document.querySelector('.menu-info').textContent = "You won"
+}
