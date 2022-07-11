@@ -60,6 +60,6 @@ export function wonGame() {
     container.style.opacity = '50%'
     let restartButton = document.querySelector('.restart-button')
     restartButton.classList.remove('disabled')
-
-    document.querySelector('.menu-info').textContent = "You won"
+    // document.getElementById("menu2").innerHTML = "You won"
+    document.querySelector('.menu-info').innerHTML = "You won"
 }

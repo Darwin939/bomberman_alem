@@ -48,7 +48,7 @@ export class FinishBlock extends GameObject {
             this.game.level ++
             // clear dom
             // this.game.walls.forEach((wall)=> wall.element.remove())
-            this.game.state = 'endGame';
+            this.game.state = 'winning';
             wonGame()
 
             // this.walls = buildLevel(this, level2)
