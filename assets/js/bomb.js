@@ -14,7 +14,7 @@ export default class Bomb {
     this.gameWidth = game.gameWidth;
     this.createdDate = Date.now();
     this.MaxLifetime = 3000;
-    this.explosionRadius = 1;
+    this.explosionRadius = 2;
     this.position = {
       x: position.x,
       y: position.y,

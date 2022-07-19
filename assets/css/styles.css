@@ -114,7 +114,7 @@ button {
     display: none;
 }
 
-.score-container{
+.score-container {
     border: 1px solid black;
     width: 250px;
     height: 50px;
@@ -132,6 +132,11 @@ button {
     height: 50px;
 }
 
+#current_level {
+    border: 1px solid red;
+    width: 50px;
+    height: 50px;
+}
 
 
 .gap {
