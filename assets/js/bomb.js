@@ -92,21 +92,25 @@ export default class Bomb {
       let new_position = new Object();
       new_position.y = this.position.y + 40 * i;
       new_position.x = this.position.x;
+      this.damage(new_position);
       new Explosion(this.game, new_position);
 
       new_position = new Object();
       new_position.y = this.position.y - 40 * i;
       new_position.x = this.position.x;
+      this.damage(new_position);
       new Explosion(this.game, new_position);
 
        new_position = new Object();
       new_position.y = this.position.y;
       new_position.x = this.position.x - 40 * i;
+      this.damage(new_position);
       new Explosion(this.game, new_position);
 
       new_position = new Object();
       new_position.y = this.position.y;
       new_position.x = this.position.x + 40 * i;
+      this.damage(new_position);
       new Explosion(this.game, new_position);
 
     }
