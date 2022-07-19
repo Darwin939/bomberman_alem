@@ -24,6 +24,7 @@ export default class Game {
     this.currentLevel = 1;
     this.state = STATES[1]; // running
 
+    this.maxLevel = 3
     this.mobs = [];
   }
 
@@ -69,6 +70,7 @@ export default class Game {
     this.finishBlocks.forEach((finish) => finish.draw());
     drawScore(this)
     drawLife(this)
+    drawLevel(this)
   }
 
   deleteAllMobs(){
@@ -90,4 +92,11 @@ function drawLife(game) {
     let player1LifeElement = document.getElementById('player1-life');
 
     player1LifeElement.innerHTML = game.player1.lifes
+}
+
+function drawLevel(game) {
+    let el = document.getElementById('current_level');
+
+    el.innerHTML = game.currentLevel
+
 }
